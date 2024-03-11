@@ -1,0 +1,6 @@
+@TuneaPianoPSP_HostAddress = http://localhost:5051
+
+GET {{TuneaPianoPSP_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
