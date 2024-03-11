@@ -10,7 +10,7 @@ public class SongGenre
     public int songId { get; set; }
     public int genreId { get; set; }
 
-    public Genre Genres { get; set; }
+    //public Genre? Genres { get; set; }
 
 }
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TuneaPianoPSP;
@@ -11,9 +12,11 @@ using TuneaPianoPSP;
 namespace TuneaPianoPSP.Migrations
 {
     [DbContext(typeof(TuneaPianoDbContext))]
-    partial class TuneaPianoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240311204932_SecondCreate")]
+    partial class SecondCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,68 +38,6 @@ namespace TuneaPianoPSP.Migrations
                     b.HasIndex("Songsid");
 
                     b.ToTable("GenreSong");
-                });
-
-            modelBuilder.Entity("Song", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
-
-                    b.Property<string>("album")
-                        .HasColumnType("text");
-
-                    b.Property<int>("artistId")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal?>("length")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("artistId");
-
-                    b.ToTable("Songs");
-
-                    b.HasData(
-                        new
-                        {
-                            id = 1,
-                            album = "Horse of a Different Color",
-                            artistId = 0,
-                            length = 180m,
-                            title = "Save a Horse (Ride a Cowboy)"
-                        },
-                        new
-                        {
-                            id = 2,
-                            album = "No Shoes nation",
-                            artistId = 1,
-                            length = 183m,
-                            title = "Take Her Home"
-                        },
-                        new
-                        {
-                            id = 3,
-                            album = "The Fall of a Rebel Angel",
-                            artistId = 2,
-                            length = 339m,
-                            title = "The Omego Point"
-                        },
-                        new
-                        {
-                            id = 4,
-                            album = "The Essential Benny Goodman(Remastered)",
-                            artistId = 3,
-                            length = 540m,
-                            title = "Sing, Sing, Sing"
-                        });
                 });
 
             modelBuilder.Entity("TuneaPianoPSP.Models.Artist", b =>
@@ -196,6 +137,68 @@ namespace TuneaPianoPSP.Migrations
                         });
                 });
 
+            modelBuilder.Entity("TuneaPianoPSP.Models.Song", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("album")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("artistId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal?>("length")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("artistId");
+
+                    b.ToTable("Songs");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            album = "Horse of a Different Color",
+                            artistId = 0,
+                            length = 180m,
+                            title = "Save a Horse (Ride a Cowboy)"
+                        },
+                        new
+                        {
+                            id = 2,
+                            album = "No Shoes nation",
+                            artistId = 1,
+                            length = 183m,
+                            title = "Take Her Home"
+                        },
+                        new
+                        {
+                            id = 3,
+                            album = "The Fall of a Rebel Angel",
+                            artistId = 2,
+                            length = 339m,
+                            title = "The Omego Point"
+                        },
+                        new
+                        {
+                            id = 4,
+                            album = "The Essential Benny Goodman(Remastered)",
+                            artistId = 3,
+                            length = 540m,
+                            title = "Sing, Sing, Sing"
+                        });
+                });
+
             modelBuilder.Entity("TuneaPianoPSP.Models.SongGenre", b =>
                 {
                     b.Property<int>("id")
@@ -249,22 +252,20 @@ namespace TuneaPianoPSP.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Song", null)
+                    b.HasOne("TuneaPianoPSP.Models.Song", null)
                         .WithMany()
                         .HasForeignKey("Songsid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Song", b =>
+            modelBuilder.Entity("TuneaPianoPSP.Models.Song", b =>
                 {
-                    b.HasOne("TuneaPianoPSP.Models.Artist", "Artists")
+                    b.HasOne("TuneaPianoPSP.Models.Artist", "Artist")
                         .WithMany("Songs")
-                        .HasForeignKey("artistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("artistId");
 
-                    b.Navigation("Artists");
+                    b.Navigation("Artist");
                 });
 
             modelBuilder.Entity("TuneaPianoPSP.Models.Artist", b =>

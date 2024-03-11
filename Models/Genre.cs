@@ -9,7 +9,7 @@ public class Genre
     [Required]
     public string description { get; set; }
 
-    public ICollection<Song> Songs { get; set; }
+    public ICollection<Song>? Songs { get; set; }
 }
 
 

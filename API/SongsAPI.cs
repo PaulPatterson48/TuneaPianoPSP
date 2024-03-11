@@ -36,7 +36,7 @@ namespace TuneaPianoPSP.API
                 {
                     return Results.NotFound();
                 }
-                updateSong.title = song.title;
+                updateSong.Title = song.Title;
                 updateSong.artistId = song.artistId;
                 updateSong.album = song.album;
                 updateSong.length = song.length;
@@ -53,7 +53,7 @@ namespace TuneaPianoPSP.API
             app.MapGet("api/songs/{id}", (TuneaPianoDbContext db, int id) =>
             {
                 var songDetails = db.Songs
-                .Include(song => song.Artist) // Include artist details
+                .Include(song => song.Artists) // Include artist details
                 .Include(song => song.Genres) // Include associated genres
                 .FirstOrDefault(song => song.id == id);
 

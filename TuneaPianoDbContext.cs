@@ -6,10 +6,10 @@ namespace TuneaPianoPSP;
 
 public class TuneaPianoDbContext : DbContext
 {
-	public DbSet<Artist> Artists { get; set; }
-	public DbSet<Genre> Genres { get; set; }
-	public DbSet<Song> Songs { get; set; }
-	public DbSet<SongGenre> SongGenres { get; set; }
+    public DbSet<Artist> Artists { get; set; }
+    public DbSet<Genre> Genres { get; set; }
+    public DbSet<Song> Songs { get; set; }
+    public DbSet<SongGenre> SongGenres { get; set; }
 
 	public TuneaPianoDbContext(DbContextOptions<TuneaPianoDbContext> context) : base(context)
 	{
@@ -35,12 +35,12 @@ public class TuneaPianoDbContext : DbContext
 			new Genre {id = 5, description = "R & B Soul"}
 		});
 
-		modelBuilder.Entity<Song>().HasData(new Song[]
-		{
-			new Song {id = 1, title = "Save a Horse (Ride a Cowboy)", artistId = 0, album = "Horse of a Different Color", length = 180M},
-			new Song {id = 2, title = "Take Her Home", artistId = 1, album = "No Shoes nation", length = 183M},
-			new Song {id = 3, title = "The Omego Point", artistId = 2, album = "The Fall of a Rebel Angel", length = 339M},
-			new Song {id = 4, title = "Sing, Sing, Sing", artistId = 3, album = "The Essential Benny Goodman(Remastered)", length = 540M}
+        modelBuilder.Entity<Song>().HasData(new Song[]
+        {
+            new Song {id = 1, Title = "Save a Horse (Ride a Cowboy)", artistId = 0, album = "Horse of a Different Color", length = 180M},
+            new Song {id = 2, Title = "Take Her Home", artistId = 1, album = "No Shoes nation", length = 183M},
+            new Song {id = 3, Title = "The Omego Point", artistId = 2, album = "The Fall of a Rebel Angel", length = 339M},
+            new Song {id = 4, Title = "Sing, Sing, Sing", artistId = 3, album = "The Essential Benny Goodman(Remastered)", length = 540M}
 
 		});
 

@@ -60,7 +60,7 @@ namespace TuneaPianoPSP.API
                     return Results.NotFound();
                 }
 
-                return Results.Ok(artist); ;
+                return Results.Ok(); ;
 
             });
 
