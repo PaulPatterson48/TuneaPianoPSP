@@ -8,8 +8,8 @@ public class Song
 {
     public int id { get; set; }
     [Required]
-    public string? title { get; set; }
-    [ForeignKey("Artists")]
+    public string? Title { get; set; }
+
     public int artistId { get; set; }
     public string? album { get; set; }
     public decimal? length { get; set; } = 0.00M;
