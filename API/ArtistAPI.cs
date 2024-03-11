@@ -5,8 +5,8 @@ using TuneaPianoPSP.Models;
 
 namespace TuneaPianoPSP.API
 {
-	public static class ArtistAPI
-	{
+    public static class ArtistAPI
+    {
         public static void Map(WebApplication app)
         {
             app.MapPost("api/createArtist", (TuneaPianoDbContext db, Artist artist) =>
@@ -48,20 +48,24 @@ namespace TuneaPianoPSP.API
                 return db.Artists.ToList();
             });
 
-            app.MapGet("api/artists/{id}", (TuneaPianoDbContext db, int id) =>
+            app.MapGet("api/artist/{id}/details", (TuneaPianoDbContext db, int id) =>
             {
-                var artistDetails = db.Artists
-                .Include(artist => artist.Songs)
-                .FirstOrDefault(artist => artist.id == id);
+                var artist = db.Artists
+                .Include(a => a.Songs)
+                .ThenInclude(s => s.Genres)
+                .SingleOrDefault(a => a.id == id);
 
-                if (artistDetails == null)
+                if (artist == null)
                 {
                     return Results.NotFound();
                 }
-                return Results.Ok(artistDetails);
+
+                return Results.Ok(artist); ;
+
             });
+
         }
-        	
-	}
+
+    }
 }
 

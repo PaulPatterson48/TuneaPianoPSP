@@ -5,8 +5,8 @@ using TuneaPianoPSP.Models;
 
 namespace TuneaPianoPSP.API
 {
-	public static class GenresAPI
-	{
+    public static class GenresAPI
+    {
         public static void Map(WebApplication app)
         {
             app.MapPost("api/createGenres", (TuneaPianoDbContext db, Genre genre) =>
@@ -55,6 +55,6 @@ namespace TuneaPianoPSP.API
                 return Results.Ok(genreDetails);
             });
         }
-	}
+    }
 }
 

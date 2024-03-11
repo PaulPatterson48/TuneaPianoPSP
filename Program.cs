@@ -1,4 +1,5 @@
 using TuneaPianoPSP;
+using TuneaPianoPSP.API;
 using TuneaPianoPSP.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
@@ -34,9 +35,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
-
-
+ArtistAPI.Map(app);
+GenresAPI.Map(app);
+SongsAPI.Map(app);
 
 app.Run();
 
